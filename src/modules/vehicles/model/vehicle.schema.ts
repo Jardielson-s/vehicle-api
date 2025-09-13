@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 @Schema({ timestamps: true })
-export class VehicleModel extends Document {
+export class VehicleModel extends Document<Types.ObjectId> {
   @Prop({ required: true, unique: true })
   placa: string;
 
@@ -26,6 +26,9 @@ export class VehicleModel extends Document {
 
   @Prop()
   updatedAt: Date;
+
+  @Prop()
+  deletedAt: Date;
 }
 
 export const VehicleSchema = SchemaFactory.createForClass(VehicleModel);

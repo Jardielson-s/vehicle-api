@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { VehiclesModule } from './vehicles/vehicle.module';
 
-@Module({})
+@Module({
+  imports: [VehiclesModule],
+})
 export class Contexts {}

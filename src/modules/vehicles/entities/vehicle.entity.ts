@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
 
 export class VehicleEntity {
-  _id: string;
+  _id: string | Types.ObjectId;
   placa: string;
   chassi: string;
   renavam: string;
