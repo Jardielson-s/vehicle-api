@@ -73,6 +73,16 @@ chmod +x scripts/create-queue.sh
 ./scripts/create-queue.sh
 ```
 
+
+### Run terraform(Optional)
+```bash
+# if you have terraform installed installed on your machine run:
+cd terraform/
+terraform init
+# after
+terraform apply --auto-approve
+```
+
 ### Run application without docker compose
 ```bash
 # development
