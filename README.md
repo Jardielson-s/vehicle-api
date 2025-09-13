@@ -1,98 +1,96 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+# Description
+<p>This application is a vehicle manager</p>
+
+## Tools
+
+* nestjs
+* node v22
+* mongodb
+* terraform
+* localstack
+* aws
+
+## Arch
+<p> 
+  <strong> Layer Architecture </strong>
+  <br/>
+The primary goal of this pattern is to separate concerns, making your codebase more organized, testable, and easier to manage as it grows. Here's a breakdown of why each layer is important:
+
+  * Model: This layer represents your data structures. It defines the schema and business objects used throughout the application. By centralizing models, you ensure data consistency and provide a clear blueprint for what your application manipulates.
+
+  *Repository: This layer is responsible for data persistence. It contains the logic for interacting with your database, external APIs, or any other data source. By abstracting this logic behind an interface, you can easily swap out your database (e.g., from SQL to a NoSQL database) without affecting the other layers
+
+  * Service: This is the core of your business logic. The service layer orchestrates interactions between the repository and the handler. It performs tasks like data validation, business calculations, and calling multiple repositories to fulfill a request. It should not know about the HTTP details, making it highly reusable and easy to test.
+
+  * Controllers: Also known as the handler, this layer is the entry point for incoming requests. It handles HTTP-specific tasks like parsing requests, validating input data, and formatting responses. It calls the service layer to perform the business logic and then sends the response back to the client.
+
+Key Benefits of this Architecture
+
+  * Testability: Since each layer has a single responsibility, it becomes much easier to write unit tests. You can test your service layer by providing mock repositories, without needing a real database connection. This leads to faster and more reliable tests.
+
+  * Maintainability: When you need to fix a bug or add a new feature, you know exactly where to go. A bug in data saving? Look at the repository. A change in business rules? The service layer is your target.
+
+  * Scalability: The clear separation of responsibilities allows different teams to work on different layers simultaneously without stepping on each other's toes. This is crucial for larger projects.
+
+  * Flexibility: The use of interfaces for the repository and service layers makes your code very flexible. You can create different implementations for different environments (e.g., a mock repository for local development and a real one for production).
+
+Potential Downsides
+While this architecture is excellent, it's important to be aware of potential issues, especially for smaller projects:
+
+  * Initial Overhead: For a very simple application, this pattern can feel like overkill. It requires more files and interfaces, which might seem unnecessary at first.
+
+  * Increased Complexity: As with any pattern, if not implemented correctly, it can lead to over-engineering. It's vital to keep the layers focused on their specific roles and avoid mixing responsibilities.
+
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Arch  Diagram
+![Notification](https://github.com/Jardielson-s)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Run application
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
+### Install dependencies
 ```bash
-$ yarn install
+yarn install
 ```
 
-## Compile and run the project
+### Set env
+```bash
+# replace env.example to .env or create .env with the env that are in env.example
+.env.example
+```
 
+### Run mongo and localstack
+```bash
+docker compose up mongo localstack -d
+
+```
+
+### Run scripts
+```bash
+# first
+chmod +x scripts/create-queue.sh
+# after
+./scripts/create-queue.sh
+```
+
+### Run application without docker compose
 ```bash
 # development
-$ yarn run start
+yarn start:dev
 
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+# prod
+yarn build
+yarn start
 ```
 
-## Run tests
+### Access swagger
+```
+http://localhost:${PORT}/docs
+```
 
+## Run appication with docker compose
 ```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+docker compose up api -d
+# or run in iterative mode
+# docker compose up api 
 ```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).

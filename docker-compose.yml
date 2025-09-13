@@ -10,7 +10,7 @@ services:
 
   api:
     build: .
-    container_name: vehicles-api
+    container_name: vehicle-api
     ports:
       - '3000:3000'
     depends_on:
@@ -20,8 +20,8 @@ services:
       AWS_ACCESS_KEY_ID: localstack
       AWS_SECRET_ACCESS_KEY: localstack
       AWS_REGION: us-east-1
-      SQS_QUEUE_NAME: vehicles-fifo
-      SQS_QUEUE_URL: http://localstack:4566/000000000000/vehicles-fifo
+      SQS_QUEUE_NAME: vehicle-fifo
+      SQS_QUEUE_URL: http://localstack:4566/000000000000/vehicle-fifo
     volumes:
       - .:/app
       - ./temp:/app/temp
@@ -34,7 +34,7 @@ services:
       - '4566:4566'
       - '4510-4559:4510-4559'
     environment:
-      - SERVICES=sqs,lambda
+      - SERVICES=sqs
       - AWS_ACCESS_KEY_ID=localstack
       - AWS_SECRET_ACCESS_KEY=localstack
       - DEFAULT_REGION=us-east-1
