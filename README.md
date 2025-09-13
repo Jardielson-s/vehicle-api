@@ -18,7 +18,7 @@ The primary goal of this pattern is to separate concerns, making your codebase m
 
   * Model: This layer represents your data structures. It defines the schema and business objects used throughout the application. By centralizing models, you ensure data consistency and provide a clear blueprint for what your application manipulates.
 
-  *Repository: This layer is responsible for data persistence. It contains the logic for interacting with your database, external APIs, or any other data source. By abstracting this logic behind an interface, you can easily swap out your database (e.g., from SQL to a NoSQL database) without affecting the other layers
+  * Repository: This layer is responsible for data persistence. It contains the logic for interacting with your database, external APIs, or any other data source. By abstracting this logic behind an interface, you can easily swap out your database (e.g., from SQL to a NoSQL database) without affecting the other layers
 
   * Service: This is the core of your business logic. The service layer orchestrates interactions between the repository and the handler. It performs tasks like data validation, business calculations, and calling multiple repositories to fulfill a request. It should not know about the HTTP details, making it highly reusable and easy to test.
 
