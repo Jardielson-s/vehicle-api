@@ -77,7 +77,7 @@ export class VehicleRepository
       deletedAt: null,
     };
 
-    const count = await this.vehicleModel.countDocuments(filters).exec();
+    const count = await this.vehicleModel.countDocuments(filters);
     const pageTotal = Math.floor((count - 1) / query.limit) + 1;
     const data = await this.vehicleModel
       .find(filtersObj)
