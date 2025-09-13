@@ -3,9 +3,19 @@ import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { VehicleService } from '../vehicle.service';
 import { VehicleRepository } from '../../repository/vehicle.repository';
 import { VehicleEntity } from '../../entities/vehicle.entity';
+import { ConfigService } from '@nestjs/config';
+import { QueueService } from 'src/infra/aws/services/sqs.service';
 
 describe('VehicleService', () => {
   let service: VehicleService;
+
+  const mockSqsService = {
+    send: jest.fn(),
+  };
+
+  const mockConfigService = {
+    get: jest.fn().mockReturnValue('vehicle-fifo'),
+  };
 
   const mockVehicleEntity = new VehicleEntity({
     _id: '1',
@@ -31,6 +41,8 @@ describe('VehicleService', () => {
       providers: [
         VehicleService,
         { provide: VehicleRepository, useValue: mockVehicleRepository },
+        { provide: QueueService, useValue: mockSqsService },
+        { provide: ConfigService, useValue: mockConfigService },
       ],
     }).compile();
 

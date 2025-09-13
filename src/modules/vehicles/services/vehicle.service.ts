@@ -1,19 +1,25 @@
-/* eslint-disable @typescript-eslint/require-await */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
   BadRequestException,
   Injectable,
+  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import * as XLSX from 'xlsx';
 import { VehicleEntity } from '../entities/vehicle.entity';
 import { VehicleRepository } from '../repository/vehicle.repository';
+import { QueueService } from 'src/infra/aws/services/sqs.service';
 
 @Injectable()
 export class VehicleService {
-  constructor(private readonly vehicleRepository: VehicleRepository) {}
+  constructor(
+    private readonly vehicleRepository: VehicleRepository,
+    private readonly queueService: QueueService,
+  ) {}
 
   async create(
     input: Pick<
@@ -83,26 +89,33 @@ export class VehicleService {
   }
 
   async processUploadedFile(fileBuffer: Buffer): Promise<VehicleEntity[]> {
-    const workbook = XLSX.read(fileBuffer, { type: 'buffer' });
+    try {
+      const workbook = XLSX.read(fileBuffer, { type: 'buffer' });
 
-    const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[sheetName];
+      const sheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[sheetName];
 
-    const jsonData = XLSX.utils.sheet_to_json(worksheet, {
-      header: 1,
-      defval: '',
-    });
+      const jsonData = XLSX.utils.sheet_to_json(worksheet, {
+        header: 1,
+        defval: '',
+      });
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_, ...data] = jsonData;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const [_, ...data] = jsonData;
 
-    return data.map((row: any) => ({
-      placa: row[0],
-      chassi: row[1],
-      renavam: row[2],
-      modelo: row[3],
-      marca: row[4],
-      ano: row[5],
-    })) as VehicleEntity[];
+      const messages = data.map((row: any) => ({
+        placa: row[0],
+        chassi: row[1],
+        renavam: row[2],
+        modelo: row[3],
+        marca: row[4],
+        ano: row[5],
+      })) as VehicleEntity[];
+
+      await this.queueService.sendMessage(messages);
+      return messages;
+    } catch (err) {
+      throw new Error(err.message);
+    }
   }
 }
