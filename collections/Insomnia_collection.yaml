@@ -1,0 +1,412 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1714434570921
+  modified: 1714434570921
+  description: ""
+collection:
+  - name: AWS
+    meta:
+      id: fld_139f74a43b504f5f945005752ff117b7
+      created: 1740512406719
+      modified: 1740512428062
+      sortKey: -1740512406720
+      description: ""
+  - name: Vistorias
+    meta:
+      id: fld_59fc7617da0d4f109edf8e4f6651864a
+      created: 1741183186266
+      modified: 1741183186266
+      sortKey: -1741183186266
+      description: ""
+  - name: Registrations
+    meta:
+      id: fld_58247b4dbd4a48b192deff6d66a64a64
+      created: 1741364068897
+      modified: 1741364068897
+      sortKey: -1741364068897
+      description: ""
+  - name: Node api
+    meta:
+      id: fld_4c2a1ab8799443108278013ecfa12de9
+      created: 1741701114943
+      modified: 1742080819845
+      sortKey: -1741701114943
+      description: ""
+  - name: Payments api
+    meta:
+      id: fld_00c69e666d2441aca7759ef7fd326b53
+      created: 1741971458078
+      modified: 1741971470470
+      sortKey: -1741971458079
+      description: ""
+  - name: Apolice
+    meta:
+      id: fld_2007e3377a0e4ffbba1b6636dfd11ad1
+      created: 1742997387536
+      modified: 1742997390530
+      sortKey: -1742997387536
+      description: ""
+  - name: send email
+    meta:
+      id: fld_82fe8cc34f124bbe8213d4b972b33bf0
+      created: 1743295051716
+      modified: 1743295051716
+      sortKey: -1743295051716
+      description: ""
+  - name: Asaas
+    meta:
+      id: fld_3e855d08801448a0b0ea053556fec238
+      created: 1744424488779
+      modified: 1744424488779
+      sortKey: -1744424488779
+      description: ""
+  - name: TCC
+    meta:
+      id: fld_4710053da65347c68343d0bcdfaba8b2
+      created: 1745114031539
+      modified: 1745114031539
+      sortKey: -1745114031539
+      description: ""
+  - name: New  project
+    meta:
+      id: fld_03fa32b8a690422fa99e3b0df2588db5
+      created: 1752971799794
+      modified: 1752971799794
+      sortKey: -1752971799794
+      description: ""
+  - name: NEEDYU
+    meta:
+      id: fld_a93c25f631ef41cf8ebe3389d04b33ff
+      created: 1753915073037
+      modified: 1753915073037
+      sortKey: -1753915073037
+      description: ""
+  - name: Vehicles
+    meta:
+      id: fld_9332a9726aa44825bc128bdb10f7811d
+      created: 1757804831923
+      modified: 1757804831923
+      sortKey: -1757804831923
+      description: ""
+    children:
+      - url: http://localhost:3000/vehicles
+        name: create
+        meta:
+          id: req_a54c7cf1abda48339e6d043ca56d51b5
+          created: 1757804836682
+          modified: 1757811531846
+          isPrivate: false
+          description: ""
+          sortKey: -1757804836682
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "placa": "LWM7753",
+              "chassi": "2TETFDAEYF89V8796",
+              "renavam": "84762336910",
+              "modelo": "M-100 1.0 8v 5p",
+              "marca": "EFFA",
+              "ano": 2024
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/vehicles
+        name: list
+        meta:
+          id: req_edf35f632bbd473ebd3a3f3335a5db32
+          created: 1757804847634
+          modified: 1757804922039
+          isPrivate: false
+          description: ""
+          sortKey: -1755859956394
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/vehicles/:id
+        name: update
+        meta:
+          id: req_cf7520549d24457787a2ad6da32c9c4e
+          created: 1757804883683
+          modified: 1757811460068
+          isPrivate: false
+          description: ""
+          sortKey: -1756832396538
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"chassi": "12345678901234567"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: 68c5b1ca21ab773c3fe8bfaf
+      - url: http://localhost:3000/vehicles/:id
+        name: get by id
+        meta:
+          id: req_e7228d1b1e30489f82d96964243321b2
+          created: 1757804904560
+          modified: 1757811390539
+          isPrivate: false
+          description: ""
+          sortKey: -1754887516250
+        method: GET
+        parameters:
+          - id: pair_89e65013bab34c6faec8dd521dd5cd5e
+            name: ""
+            value: ""
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: 68c5b1ca21ab773c3fe8bfaf
+      - url: http://localhost:3000/vehicles/generate-template
+        name: get template
+        meta:
+          id: req_55f2d5f958914e4cadc1f7ece6dea3c4
+          created: 1757804929899
+          modified: 1757804975545
+          isPrivate: false
+          description: ""
+          sortKey: -1754401296178
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/vehicles/:id
+        name: delete
+        meta:
+          id: req_9c889678887d4ab6bbcc0a6cabcc9237
+          created: 1757804988008
+          modified: 1757811476639
+          isPrivate: false
+          description: ""
+          sortKey: -1756346176466
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: 68c5b1ca21ab773c3fe8bfaf
+      - url: http://localhost:3000/vehicles/upload
+        name: upload
+        meta:
+          id: req_f50b40647d8c4defa071b28b9a7a7c0b
+          created: 1757805001689
+          modified: 1757811403879
+          isPrivate: false
+          description: ""
+          sortKey: -1757318616610
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_00667abae7574c139ba83ff386a4ab37
+              name: file
+              value: ""
+              description: ""
+              disabled: false
+              type: file
+              fileName: /home/jardielson/Downloads/vehicles_68c5cc68e3ef169bbe834ca8.xlsx
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - name: User-Agent
+            value: insomnia/11.6.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1714434579334
+    modified: 1746237784198
+  cookies:
+    - key: .AspNetCore.Antiforgery.Y3vMx6oYCvE
+      value: CfDJ8BFAi2Fz8G9PlD6865pjFJJMXsgWnNLv22rHE0XI7lQ-PNFR_1qBH2mADTJmreWh62PKp9iHs31NdgZZuVXT3ot5oMPqQako7tLeov_ACvYO_ea1dNwboETq-7iLj42hhU1qMx1dXRZkAjHdEL1qWo8
+      domain: ola.oleconsignado.com.br
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2024-05-01T00:08:07.095Z
+      lastAccessed: 2024-05-01T00:08:07.095Z
+      sameSite: strict
+      id: 3ee873e1-7b79-4ac2-aeb6-3a0cb75e7101
+    - key: ak_bmsc
+      value: 70C413B86DC92ACCA8BE4B918D4995EE~000000000000000000000000000000~YAAQVA4tFzLp4SmPAQAAR+6RMRcZ7tJo6sE7KzvIJLGg29fbqdos+F6iUE3+PaYK590LkT4TQD9j6+dlioqkb4pi7SSFd1SKyVE3r69OHthKaxwfrRUQkymljnWA68e2G7tMxqBeZjDTLOncuVtDMxwtZ92VkD+q0jn+OpvsdXMM3d5LYk/cLE3QZDzGCmlyV7a03EXGqVDPm+xtAyPnnnNWnQYZD/DsBU9zsaQAFKp0hBBstpyjCQr7GHeqZ9ISkhX4jywufs9nzX1sn4WP7aqV+rIKtFjDZqbBE42Ee2yNpnFKmEEWuMqAFqY+5cO9ySKMRAQw7o0FBfkWahoHiI9R6pqnCQfy2xY+QZuqp/9HVXdrnwCrD6bvKYriWUl6q1Pkw2FQF4IZMI3ZXxutNcQlqPZGyYpKDc5/oS96Bro=
+      maxAge: 4806
+      domain: oleconsignado.com.br
+      path: /
+      secure: true
+      hostOnly: false
+      creation: 2024-05-01T00:33:18.557Z
+      lastAccessed: 2024-05-01T00:33:18.557Z
+      sameSite: none
+      id: 556e7645-7920-46fe-9415-3b718eaa87c2
+    - key: AWSALBTG
+      value: MfADIN0DKIgZB3BhWPXXzhTB4oaatdPGcPgQ3/7CYQ87pkUxyUE5LFfG/CNI5LXQlZugYw4GJIlSYvhtFBakW94J+qGJVCyFCmaO7ZR+zwwtFBV3R+3dfNSOZYI69em5SjOBkaZNEEgIT7ShrYZGTQF+DG0/xf647Cm05CUgyQ1k
+      domain: sandbox.asaas.com
+      path: /
+      hostOnly: true
+      creation: 2025-02-20T20:46:17.288Z
+      lastAccessed: 2025-05-03T02:03:04.197Z
+      id: ba64964f-353a-46c6-8f1f-cd6fd875afee
+    - key: AWSALBTGCORS
+      value: MfADIN0DKIgZB3BhWPXXzhTB4oaatdPGcPgQ3/7CYQ87pkUxyUE5LFfG/CNI5LXQlZugYw4GJIlSYvhtFBakW94J+qGJVCyFCmaO7ZR+zwwtFBV3R+3dfNSOZYI69em5SjOBkaZNEEgIT7ShrYZGTQF+DG0/xf647Cm05CUgyQ1k
+      domain: sandbox.asaas.com
+      path: /
+      secure: true
+      hostOnly: true
+      creation: 2025-02-20T20:46:17.290Z
+      lastAccessed: 2025-05-03T02:03:04.197Z
+      sameSite: none
+      id: 4fc3b44c-4a39-4a3f-aeea-7be5141752f1
+    - key: AWSALB
+      value: rEpxJowa41J+qWEqs5eVKb1ncR/uhBT4jOV9J2QpOtg3pDc5rlgt3kLSvQCmZUoVSuS1F4MKPIqlcZhPGTUxoOWB27rmrb1BdzCHNMBna375htyGMdTJMWekOop/
+      domain: sandbox.asaas.com
+      path: /
+      hostOnly: true
+      creation: 2025-02-20T20:46:17.290Z
+      lastAccessed: 2025-05-03T02:03:04.198Z
+      id: d3bfb5fc-6dc6-41b5-9255-857e969f9470
+    - key: AWSALBCORS
+      value: rEpxJowa41J+qWEqs5eVKb1ncR/uhBT4jOV9J2QpOtg3pDc5rlgt3kLSvQCmZUoVSuS1F4MKPIqlcZhPGTUxoOWB27rmrb1BdzCHNMBna375htyGMdTJMWekOop/
+      domain: sandbox.asaas.com
+      path: /
+      secure: true
+      hostOnly: true
+      creation: 2025-02-20T20:46:17.290Z
+      lastAccessed: 2025-05-03T02:03:04.198Z
+      sameSite: none
+      id: dcae365d-c34d-4266-a40b-f6e4bc4bafb6
+    - key: JSESSIONID
+      value: 29C83B9DA7C4FE6EED6241CA4A7C6882F0D2190741D4A22911BE8F8EC5234F7490650C7A51E22A75BF3925FCF41F2C7E6B36641AD0F2F1350C3ECAD2D4EFC17C.n1
+      domain: sandbox.asaas.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-02-20T20:48:10.326Z
+      lastAccessed: 2025-05-03T00:59:20.649Z
+      id: fbfe9619-71e1-452c-9456-2644ca1a1e40
+    - key: JSESSIONID
+      value: B1159842594F08485CC654E9D3559DB6
+      domain: dashboardbff-staging.oontech.app
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-03-05T14:00:52.949Z
+      lastAccessed: 2025-03-12T21:44:18.192Z
+      id: bb294126-df66-4bee-9318-aaeb16dfc2db
+    - key: as_1620049547
+      value: 535cc6ed-2ecf-4430-a751-d52ed5c57488
+      maxAge: 34560000
+      domain: sandbox.asaas.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-05-03T01:22:29.785Z
+      lastAccessed: 2025-05-03T01:28:07.005Z
+      id: 8b721986-16f0-4ef6-b4bb-9c6a64e44077
+    - key: as_1590411712
+      value: de8465ae-3def-4623-a417-c49daa220c75
+      maxAge: 34560000
+      domain: sandbox.asaas.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-05-03T01:22:29.785Z
+      lastAccessed: 2025-05-03T01:28:07.005Z
+      id: ef273674-a662-4830-b263-e86b8d342a37
+    - key: as_1739897182
+      maxAge: 31536000
+      domain: sandbox.asaas.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-05-03T01:22:29.785Z
+      lastAccessed: 2025-05-03T01:28:07.005Z
+      id: ac9a69a6-bbcb-4244-a7d0-129a61318dec
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1714434579332
+    modified: 1753915115352
+    isPrivate: false
+  data:
+    NEEDYU: https://api.needyu.ai/

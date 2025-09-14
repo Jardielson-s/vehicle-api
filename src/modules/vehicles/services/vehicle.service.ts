@@ -42,7 +42,10 @@ export class VehicleService {
   }
 
   async findById(id: string): Promise<VehicleEntity> {
-    const vehicle = await this.vehicleRepository.getOneByQuery({ _id: id });
+    const vehicle = await this.vehicleRepository.getOneByQuery({
+      _id: id,
+      deletedAt: null,
+    });
     if (!vehicle?._id) {
       throw new NotFoundException('Vehicle not found');
     }

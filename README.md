@@ -94,13 +94,16 @@ yarn start
 ```
 
 ### Access swagger
-```
+```bash
 http://localhost:${PORT}/docs
+
+# or use insomnia or postman here collections/Insomnia_collection.yaml
+
 ```
 
 ## Run appication with docker compose
 ```bash
-docker compose up api -d
+docker compose --env-file .env  up api -d
 # or run in iterative mode
-# docker compose up api 
+# docker compose up --env-file .env api 
 ```

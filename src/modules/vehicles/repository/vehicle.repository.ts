@@ -63,12 +63,13 @@ export class VehicleRepository
     query: { limit: number; page: number; search?: string },
     filters: RootFilterQuery<VehicleEntity>,
   ): Promise<ListResponse<VehicleEntity>> {
-    const search = query.search
+    const regex = query?.search ? new RegExp(query.search, 'i') : '';
+    const search = query?.search
       ? {
           $or: [
-            { chassi: query.search },
-            { renavam: query.search },
-            { placa: query.search },
+            { chassi: { $regex: regex } },
+            { renavam: { $regex: regex } },
+            { placa: { $regex: regex } },
           ],
         }
       : {};

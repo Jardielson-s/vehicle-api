@@ -33,7 +33,7 @@ export class VehicleController {
     private readonly service: VehicleService,
   ) {}
 
-  @Get('generate-template')
+  @Get('/generate-template')
   async generateTemplate(@Res() res: Response): Promise<void> {
     const fileName = `vehicles_${new Types.ObjectId().toString()}.xlsx`;
 
@@ -93,18 +93,17 @@ export class VehicleController {
     return this.repository.list(query, {});
   }
 
-  @Get(':_id')
+  @Get('/:_id')
   findOne(@Param('_id') _id: string) {
     return this.service.findById(_id);
   }
 
-  @Put(':_id')
+  @Put('/:_id')
   update(@Param('_id') _id: string, @Body() dto: UpdateVehicleDto) {
-    console.log(_id);
     return this.service.update(_id, dto);
   }
 
-  @Delete(':_id')
+  @Delete('/:_id')
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('_id') _id: string) {
     return this.repository.delete(_id);

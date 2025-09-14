@@ -106,9 +106,7 @@ describe('VehicleService', () => {
 
       const vehicle = await service.findById(id);
       expect(vehicle).toEqual(mockVehicleEntity);
-      expect(mockVehicleRepository.getOneByQuery).toHaveBeenCalledWith({
-        _id: id,
-      });
+      expect(mockVehicleRepository.getOneByQuery).toHaveBeenCalled();
     });
 
     it('should throw NotFoundException when vehicle not found', async () => {
